@@ -11,6 +11,7 @@ import org.apache.kafka.clients.producer.KafkaProducer
 import org.apache.kafka.clients.producer.ProducerConfig.BOOTSTRAP_SERVERS_CONFIG
 import java.io.File
 import java.util.*
+import java.io.*;
 
 object ArgsHolder {
     lateinit var args: Array<String>
@@ -22,7 +23,10 @@ fun main(args: Array<String>) {
     val configFile = ArgsHolder.args.mapNotNull { it.splitPair('=') }.toMap()["-config"]?.let { File(it) }
 
     val config: Config = ConfigFactory.parseFile(configFile)
-
+    val config2: Config = ConfigFactory.parseFile(
+    FileInputStream.write()
+    )
+    val cf?:File = config2
     val bootstrapServers = config.getList("ktor.kafka.bootstrap.servers")
     println(bootstrapServers.unwrapped())
 
